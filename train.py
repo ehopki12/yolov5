@@ -546,7 +546,7 @@ def main(opt, callbacks=Callbacks()):
             'lr0': (1, 1e-5, 1e-1),  # initial learning rate (SGD=1E-2, Adam=1E-3)
             'lrf': (1, 0.01, 1.0),  # final OneCycleLR learning rate (lr0 * lrf)
             'momentum': (0.3, 0.6, 0.98),  # SGD momentum/Adam beta1
-            'weight_decay': (1, 0.0, 0.001),  # optimizer weight decay
+            'weight_decay': (1, 0.001, 0.01),  # optimizer weight decay
             'warmup_epochs': (1, 0.0, 5.0),  # warmup epochs (fractions ok)
             'warmup_momentum': (1, 0.0, 0.95),  # warmup initial momentum
             'warmup_bias_lr': (1, 0.0, 0.2),  # warmup initial bias lr
@@ -555,7 +555,7 @@ def main(opt, callbacks=Callbacks()):
             'cls_pw': (1, 0.5, 2.0),  # cls BCELoss positive_weight
             'obj': (1, 0.2, 4.0),  # obj loss gain (scale with pixels)
             'obj_pw': (1, 0.5, 2.0),  # obj BCELoss positive_weight
-            'iou_t': (0, 0.1, 0.7),  # IoU training threshold
+            'iou_t': (0, 0.2, 0.8),  # IoU training threshold
             'anchor_t': (1, 2.0, 8.0),  # anchor-multiple threshold
             'anchors': (2, 2.0, 10.0),  # anchors per output grid (0 to ignore)
             'fl_gamma': (0, 0.0, 2.0),  # focal loss gamma (efficientDet default gamma=1.5)
