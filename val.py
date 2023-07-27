@@ -100,7 +100,7 @@ def run(
         batch_size=32,  # batch size
         imgsz=640,  # inference size (pixels)
         conf_thres=0.001,  # confidence threshold
-        iou_thres=0.1,  # NMS IoU threshold
+        iou_thres=0.6,  # NMS IoU threshold
         task='val',  # train, val, test, speed or study
         device='',  # cuda device, i.e. 0 or 0,1,2,3 or cpu
         workers=8,  # max dataloader workers (per RANK in DDP mode)
@@ -334,7 +334,7 @@ def parse_opt():
     parser.add_argument('--batch-size', type=int, default=32, help='batch size')
     parser.add_argument('--imgsz', '--img', '--img-size', type=int, default=640, help='inference size (pixels)')
     parser.add_argument('--conf-thres', type=float, default=0.001, help='confidence threshold')
-    parser.add_argument('--iou-thres', type=float, default=0.1, help='NMS IoU threshold')
+    parser.add_argument('--iou-thres', type=float, default=0.6, help='NMS IoU threshold')
     parser.add_argument('--task', default='val', help='train, val, test, speed or study')
     parser.add_argument('--device', default='', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--workers', type=int, default=8, help='max dataloader workers (per RANK in DDP mode)')
@@ -376,7 +376,7 @@ def main(opt):
                 run(**vars(opt), plots=False)
 
         elif opt.task == 'study':  # speed vs mAP benchmarks
-            # python val.py --task study --data coco.yaml --iou 0.1 --weights yolov5n.pt yolov5s.pt...
+            # python val.py --task study --data coco.yaml --iou 0.6--weights yolov5n.pt yolov5s.pt...
             for opt.weights in weights:
                 f = f'study_{Path(opt.data).stem}_{Path(opt.weights).stem}.txt'  # filename to save to
                 x, y = list(range(256, 1536 + 128, 128)), []  # x axis (image sizes), y axis
