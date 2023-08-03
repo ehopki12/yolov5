@@ -427,7 +427,7 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
                         batch_size=batch_size // WORLD_SIZE * 2,
                         imgsz=imgsz,
                         model=attempt_load(f, device).half(),
-                        iou_thres=0.65 if is_coco else 0.60,  # best pycocotools results at 0.65
+                        iou_thres=0.1 if is_coco else 0.60,  # best pycocotools results at 0.65
                         single_cls=single_cls,
                         dataloader=val_loader,
                         save_dir=save_dir,
@@ -555,7 +555,7 @@ def main(opt, callbacks=Callbacks()):
             'cls_pw': (1, 0.5, 2.0),  # cls BCELoss positive_weight
             'obj': (1, 0.2, 4.0),  # obj loss gain (scale with pixels)
             'obj_pw': (1, 0.5, 2.0),  # obj BCELoss positive_weight
-            'iou_t': (0, 0.2, 0.8),  # IoU training threshold
+            'iou_t': (0, 0.1, 0.8),  # IoU training threshold
             'anchor_t': (1, 2.0, 8.0),  # anchor-multiple threshold
             'anchors': (2, 2.0, 10.0),  # anchors per output grid (0 to ignore)
             'fl_gamma': (0, 0.0, 2.0),  # focal loss gamma (efficientDet default gamma=1.5)
